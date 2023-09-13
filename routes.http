@@ -3,13 +3,35 @@ GET http://localhost:3333/prompts
 
 ###
 
-# @name get-prompts
-GET http://localhost:3333/prompts
+# @name post-videos
+POST http://localhost:3333/videos
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="1.png"
-Content-Type: image/png
+Content-Disposition: form-data; name="file"; filename="exemple_audio.mp3"
+Content-Type: audio/mpeg
 
-< ./1.png
+< ./exemple_audio.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name create-transcription
+POST http://localhost:3333/videos/4ac7b277-a2e8-46d8-8243-77e7ce85bb56/transcription
+Content-Type: application/json
+
+{
+    "prompt": "elevado, multiplicar"
+}
+
+###
+
+# @name generate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+    "videoId": "4ac7b277-a2e8-46d8-8243-77e7ce85bb56",
+    "temperature": 0.5,
+    "template": "Gere um resumo sucinto da transcrição do vídeo informado a seguir: '''{transcription}'''"
+}
