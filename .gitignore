@@ -128,3 +128,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#Local where storage audios
+tmp/*
+
+#audios
+exemple_audio.mp3
+
+
